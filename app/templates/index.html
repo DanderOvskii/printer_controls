@@ -4,94 +4,8 @@
 <head>
     <title> Ender 3 Controll</title>
     <meta name="viewport" content="width = device-width, initial-scale=1">
-    <style>
-        img {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        /* CSS */
-        .button-4 {
-            appearance: none;
-            background-color: #FAFBFC;
-            border: 1px solid rgba(27, 31, 35, 0.15);
-            border-radius: 6px;
-            box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
-            box-sizing: border-box;
-            color: #24292E;
-            cursor: pointer;
-            display: inline-block;
-            font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 20px;
-            list-style: none;
-            padding: 6px 16px;
-            position: relative;
-            transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: manipulation;
-            vertical-align: middle;
-            white-space: nowrap;
-            word-wrap: break-word;
-        }
-
-        .button-4:hover {
-            background-color: #F3F4F6;
-            text-decoration: none;
-            transition-duration: 0.1s;
-        }
-
-        .button-4:disabled {
-            background-color: #FAFBFC;
-            border-color: rgba(27, 31, 35, 0.15);
-            color: #959DA5;
-            cursor: default;
-        }
-
-        .button-4:active {
-            background-color: #EDEFF2;
-            box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
-            transition: none 0s;
-        }
-
-        .button-4:focus {
-            outline: 1px transparent;
-        }
-
-        .button-4:before {
-            display: none;
-        }
-
-        .button-4:-webkit-details-marker {
-            display: none;
-        }
-
-        .controll_container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-	    width:50%;
-        }
-
-        .camera_container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-	    width:50%;	
-        }
-        .container{
-            display:flex;
-            flex-direction:row;
-	    
-        }
-    </style>
+    <link rel="stylesheet" href="../static/style/button_style.css">
+    <link rel="stylesheet" href="../static/style/style.css">
 </head>
 
 <body>
@@ -112,8 +26,7 @@
     </div>
     <div class="camera_container">
         <h2>Camera Feed:</h2>
-<button class="button-4" onclick="switchCam(0)">cam1</button>
-<button class="button-4" onclick="switchCam(2)">cam2</button>
+        <button class="button-4" onclick="toggleCam()">swich cam</button>
         <img id="bg" src="{{ url_for('camera.video_feed') }}" style="width: 80%; 80%;">
     </div>
 </div>

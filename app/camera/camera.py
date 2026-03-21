@@ -21,6 +21,7 @@ def video_stream():
             yield (b'--frame\r\n' b'Content-type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 def switch_camera(index):
+    print("cameraswich")
     global video, current_camera
     video.release()
     current_camera = index
