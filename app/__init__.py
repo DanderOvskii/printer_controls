@@ -1,9 +1,13 @@
 from flask import Flask
-
+from flask_login import LoginManager
+from app.models import User
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 def create_app():
     app = Flask(__name__)
-    app.secret_key = 'your_secret_key'
+    app.secret_key = os.getenv('SECRET_KEY')
 
     # Setup flask-login
     login_manager = LoginManager()
@@ -19,7 +23,7 @@ def create_app():
             return user
         return None
 
-    from app.routes import bp as auth_bp
+    from app.api.auth_api import bp as auth_bp
     app.register_blueprint(auth_bp)
 
     from app.routes import bp as main_bp

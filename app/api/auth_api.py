@@ -1,12 +1,14 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user, login_required, LoginManager, current_user
 from werkzeug.security import check_password_hash, generate_password_hash
-from app.models.user import User
+from app.models import User
+import os
 
 bp = Blueprint('auth', __name__)
 
-# Create a single user in memory
-user = User(id=1, username='admin', password_hash=generate_password_hash('your_password'))
+username = os.getenv('USERNAME', 'default_user')
+password = os.getenv('PASSWORD', 'default_password')
+user = User(id=1, username=username, password_hash=generate_password_hash(password))
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
