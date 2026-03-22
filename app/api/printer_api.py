@@ -1,10 +1,12 @@
 from flask import Blueprint, jsonify, request
 from app.printer.printer_service import PrinterService
+from flask_login import login_required
 
 bp = Blueprint("printer", __name__, url_prefix="/api/printer")
 printer_service = PrinterService()
 
 @bp.route("/enqueue", methods=["POST"])
+@login_required
 def enqueue():
     data = request.json
     commands = data.get("commands")
@@ -21,5 +23,6 @@ def enqueue():
     return jsonify({"status": "queued", "commands": commands, "responses": responses})
 
 @bp.route("/status")
+@login_required
 def status():
     return jsonify(printer_service.get_state())
