@@ -1,3 +1,9 @@
+body{
+background-image:url("../images/yoda.PNG");
+background-position:center;
+background-size:cover;
+}
+
  img {
             display: block;
             margin-left: auto;

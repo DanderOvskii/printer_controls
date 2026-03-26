@@ -2,10 +2,12 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" href="../static/style/button_style.css">
+<meta name="viewport" content="width = device-width, initial-scale=1">    
+<link rel="stylesheet" href="../static/style/button_style.css">
     <link rel="stylesheet" href="../static/style/login_style.css">
 </head>
 <body>
+<div class="container">
   <form method="post">
     <input name="username" type="text" placeholder="Username" required>
     <input name="password" type="password" placeholder="Password" required>
@@ -20,5 +22,6 @@
       </ul>
     {% endif %}
   {% endwith %}
+</div>
 </body>
 </html>
