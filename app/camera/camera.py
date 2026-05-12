@@ -5,7 +5,7 @@ import atexit
 import threading
 
 class Camera:
-    def __init__(self, current_camera =1):
+    def __init__(self, current_camera =0):
         self.current_camera = current_camera
         self.video = cv2.VideoCapture(current_camera, cv2.CAP_ANY)
         self.video.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*'MJPG'))

@@ -1,0 +1,11 @@
+nohup: ignoring input
+[2026-05-11 20:38:06 +0200] [30897] [INFO] Starting gunicorn 26.0.0
+[2026-05-11 20:38:06 +0200] [30897] [INFO] Listening at: http://127.0.0.1:5000 (30897)
+[2026-05-11 20:38:06 +0200] [30897] [INFO] Using worker: gthread
+[2026-05-11 20:38:06 +0200] [30898] [INFO] Booting worker with pid: 30898
+[2026-05-11 20:38:07 +0200] [30897] [INFO] Control socket listening at /run/user/1000/gunicorn.ctl
+Failed to find attribute 'app' in 'app'.
+[2026-05-11 20:38:08 +0200] [30898] [INFO] Worker exiting (pid: 30898)
+[2026-05-11 20:38:08 +0200] [30897] [ERROR] Worker (pid:30898) exited with code 4.
+[2026-05-11 20:38:08 +0200] [30897] [ERROR] Shutting down: Master
+[2026-05-11 20:38:08 +0200] [30897] [ERROR] Reason: App failed to load.

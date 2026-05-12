@@ -26,3 +26,9 @@ def enqueue():
 @login_required
 def status():
     return jsonify(printer_service.get_state())
+
+@bp.route("/connect")
+@login_required
+def connect():
+    result = printer_service.connect_printer()
+    return jsonify(result)

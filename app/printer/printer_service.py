@@ -52,3 +52,8 @@ class PrinterService:
             "state":self.state.value,
             "last_response":self.last_response
         }
+
+
+    def connect_printer(self):
+        result = self.serial_manager.reconnect()
+        return result

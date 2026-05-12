@@ -14,11 +14,22 @@
 <div class="controll_container">
     <h1>Hellooooo, {{ user.username }}!</h1>
     
-
+        <button class="button-4" onclick="reconnect_printer()">PReconnect printer</button>
         <button class="button-4" onclick="sendCommand('G28')">Printer Home</button>
         <button class="button-4" onclick="sendCommand('M105')">Get Temp</button>
-        <button class="button-4" onclick="sendCommand(['G91', 'G1 Z10 F300', 'G90'])">Printer 10 up</button>
-        <button class="button-4" onclick="updatePrinterState()">printer status</button>
+         <div>
+            <h3>X</h3>
+                <button class="button-4" onclick="sendCommand(['G91', 'G1 X-10 F300', 'G90'])">left</button>
+                <button class="button-4" onclick="sendCommand(['G91', 'G1 X10 F300', 'G90'])">right</button>
+            <h3>Y</h3>
+                <button class="button-4" onclick="sendCommand(['G91', 'G1 Y10 F300', 'G90'])">front</button>
+                <button class="button-4" onclick="sendCommand(['G91', 'G1 Y-10 F300', 'G90'])">back</button>
+             <h3>Z</h3>
+                <button class="button-4" onclick="sendCommand(['G91', 'G1 Z10 F300', 'G90'])">up</button>
+                <button class="button-4" onclick="sendCommand(['G91', 'G1 Z-10 F300', 'G90'])">down</button>
+        </div>
+</div>
+<div class="status_container">
         <h3>Status:</h3>
         <pre id="status"></pre>
 

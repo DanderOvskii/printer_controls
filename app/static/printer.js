@@ -35,3 +35,19 @@ async function updatePrinterState(){
         console.error("Error:", error);
     }
 }
+
+async function reconnect_printer() {
+    try{
+          const res = await fetch("/api/printer/connect", {
+            method: "GET",
+           
+        });
+
+        const data = await res.json();
+        set_response(data);
+        updatePrinterState()
+    }catch (error){
+        console.error("Error:",error);
+    }
+    
+}

@@ -25,9 +25,15 @@ class SerialManager:
             self.serial = serial.Serial(PORT,BAUDRATE, timeout=2)
             time.sleep(2)
             self.serial.reset_input_buffer()
+            return{"status":"connected"}
         except Exception as e:
-            print("serial connection error",e)
             self.serial = None
+            return {"status":"error","message":str(e)}
+
+    def reconnect(self):
+        if self.serial and self.serial.is_open:
+            self.serial.close()
+        return self._connect()
 
     def send(self,command):
         if not self.serial or not self.serial.is_open:
