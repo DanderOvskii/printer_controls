@@ -1,7 +1,7 @@
 let camInt = 0;
 function toggleCam() {
 console.log("swich")
-camInt = (camInt === 0) ? 4:0;
+camInt = (camInt === 0) ? 2:0;
 switchCam(camInt);
 }
 
