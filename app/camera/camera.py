@@ -70,3 +70,28 @@ class Camera:
 
         if self.video is not None:
             self.video.release()
+
+
+camera = Camera()
+def video_stream():
+    while True:
+        frame = camera.get_frame()
+
+        if frame is None:
+            continue
+
+        ret, buffer = cv2.imencode('.jpg', frame)
+
+        if not ret:
+            continue
+
+        frame_bytes = buffer.tobytes()
+
+        yield (
+            b'--frame\r\n'
+            b'Content-Type: image/jpeg\r\n\r\n' +
+            frame_bytes +
+            b'\r\n'
+        )
+
+        time.sleep(1 / 30)
