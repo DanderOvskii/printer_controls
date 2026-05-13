@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, Response
-from app.camera.camera import camera,video_stream
+from app.camera.camera import Camera, video_stream
 from flask_login import login_required
 
 bp = Blueprint("camera",__name__,url_prefix="/api/camera")
