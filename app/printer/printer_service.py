@@ -33,7 +33,7 @@ class PrinterService:
                     self.last_response = response.get("response",[])
                     if command =="M112":
                         self.state = PrinterState.ERROR
-                    elif command =="G28" or command.startswith("G1"):
+                    elif command.startswith(("G0", "G1", "G28")):
                         self.state = PrinterState.PRINTING
                     elif command =="M105":
                         pass

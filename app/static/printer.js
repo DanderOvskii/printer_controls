@@ -35,3 +35,16 @@ async function updatePrinterState(){
         console.error("Error:", error);
     }
 }
+
+function pollPrinterState() {
+    fetch('/printer/state')
+        .then(response => response.json())
+        .then(data => {
+            const isPrinting = data.state === 'PRINTING';
+            document.querySelectorAll('.printer-action-btn').forEach(btn => {
+                btn.disabled = isPrinting;
+            });
+        });
+}
+
+setInterval(pollPrinterState, 2000);
