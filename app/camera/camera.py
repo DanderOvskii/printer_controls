@@ -5,7 +5,7 @@ import atexit
 import threading
 
 class Camera:
-    def __init__(self, current_camera =1):
+    def __init__(self, current_camera =0):
         self.current_camera = current_camera
         self.video = cv2.VideoCapture(current_camera, cv2.CAP_ANY)
         self.video.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*'MJPG'))
@@ -19,7 +19,7 @@ class Camera:
         self.thread = threading.Thread(target=self._video_stream)
         self.thread.daemon = True
         self.thread.start()
-        atexit.register(self.turn_off())
+        atexit.register(self.turn_off)
 
     def _video_stream(self):
         while self.running:
