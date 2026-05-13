@@ -37,7 +37,7 @@ async function updatePrinterState(){
 }
 
 function pollPrinterState() {
-    fetch('/printer/state')
+    fetch("/api/printer/status")
         .then(response => response.json())
         .then(data => {
             const isPrinting = data.state === 'PRINTING';
