@@ -6,7 +6,7 @@ switchCam(camInt);
 }
 
 function switchCam(cam) {
-    fetch(`api/camera/switch_camera?cam=${cam}`)
+    fetch(`api/camera/switch?cam=${cam}`)
         .then(() => {
             // Force reload the camera feed by updating the src with a cache buster
             const img = document.getElementById('bg');
