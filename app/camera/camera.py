@@ -26,7 +26,7 @@ class Camera:
         if self.video is not None:
             self.video.release()
 
-        self.video = cv2.VideoCapture(current_camera, cv2.CAP_ANY)
+        self.video = cv2.VideoCapture(index, cv2.CAP_ANY)
 
         self.video.set(cv2.CAP_PROP_FOURCC,cv2.VideoWriter_fourcc(*'MJPG'))
         self.video.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
