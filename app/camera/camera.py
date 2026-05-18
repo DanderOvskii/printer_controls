@@ -7,10 +7,6 @@ import threading
 class Camera:
     def __init__(self, current_camera =0):
         self.current_camera = current_camera
-        self.video = cv2.VideoCapture(current_camera, cv2.CAP_ANY)
-        self.video.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*'MJPG'))
-        self.video.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-        self.video.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
         if not self.video.isOpened():
             print("camera failed to open")
         self.running = True
@@ -20,6 +16,25 @@ class Camera:
         self.thread.daemon = True
         self.thread.start()
         atexit.register(self.turn_off)
+        self._open_camera(self.current_camera)
+
+    def _open_camera(self, index):
+        if self.video is not None:
+            self.video.release()
+
+        self.video = cv2.VideoCapture(current_camera, cv2.CAP_ANY)
+
+        self.video.set(cv2.CAP_PROP_FOURCC,cv2.VideoWriter_fourcc(*'MJPG'))
+        self.video.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+        self.video.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+        time.sleep(0.5)
+        if not self.video.isOpened():
+            print(f"Failed to open camera {index}")
+            self.video = None
+            return False
+
+        print(f"Camera {index} opened successfully")
+        return True
 
     def _video_stream(self):
         while self.running:
@@ -35,15 +50,21 @@ class Camera:
 
     def get_frame(self):
         with self.lock:
-            return self.frame
+            if self.frame is None:
+                return None
+            return self.frame.copy()
 
     def switch_camera(self,index):
         print("cameraswich")
         with self.lock:
-            if self.video is not None:
-                self.turn_off()
-            self.current_camera = index
-            self.video = cv2.VideoCapture(self.current_camera,cv2.CAP_ANY)
+            success = self._open_camera(index)
+
+            if success:
+                self.current_camera = index
+                self.frame = None
+                print(f"Switched to camera {index}")
+            else:
+                print(f"Could not switch to camera {index}")
 
 
     def turn_off(self):
@@ -54,6 +75,8 @@ class Camera:
 
         if self.video is not None:
             self.video.release()
+        cv2.destroyAllWindows()
+
 
 camera = Camera()
 def video_stream():
