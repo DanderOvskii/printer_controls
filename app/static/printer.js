@@ -48,3 +48,20 @@ function pollPrinterState() {
 }
 
 setInterval(pollPrinterState, 2000);
+
+
+async function reconnect_printer() {
+    try{
+          const res = await fetch("/api/printer/connect", {
+            method: "GET",
+           
+        });
+
+        const data = await res.json();
+        set_response(data);
+        updatePrinterState()
+    }catch (error){
+        console.error("Error:",error);
+    }
+    
+}

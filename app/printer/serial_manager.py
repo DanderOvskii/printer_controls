@@ -29,6 +29,12 @@ class SerialManager:
             print("serial connection error",e)
             self.serial = None
 
+
+    def reconnect(self):
+        if self.serial and self.serial.is_open:
+            self.serial.close()
+        return self._connect()
+
     def send(self,command):
         if not self.serial or not self.serial.is_open:
             return{"error":"printer not connected"}
