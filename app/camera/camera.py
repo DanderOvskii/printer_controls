@@ -7,18 +7,20 @@ import threading
 class Camera:
     def __init__(self, current_camera =0):
         self.current_camera = current_camera
+        
+        self.video = None
+        self.frame = None
+
         if not self.video.isOpened():
             print("camera failed to open")
         self.running = True
 
-        self.video = None
-        self.frame = None
 
         self.lock = threading.Lock()
         self.thread = threading.Thread(target=self._video_stream)
         self.thread.daemon = True
         self.thread.start()
-        
+
         atexit.register(self.turn_off)
         self._open_camera(self.current_camera)
 
