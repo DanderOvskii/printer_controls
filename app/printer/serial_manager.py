@@ -2,7 +2,7 @@ import serial
 import time
 import threading
 
-PORT = "/dev/ttyUSB1"
+PORT = "/dev/ttyUSB0"
 BAUDRATE = 115200
 
 class SerialManager:
