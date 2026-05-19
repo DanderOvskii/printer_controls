@@ -66,16 +66,6 @@ async function reconnect_printer() {
     
 }
 
-
-$("#stop").click(function(evt){
-    evt.preventDefault();
-    var result = confirm("Are you sure?");
-    if(result){
-        sendCommand("M0");
-    }else{
-        alert("Command cancelled");
-    }
-});
 function stopPrinter() {
   let text = "Press a button!\nEither OK or Cancel.";
   if (confirm(text) == true) {
