@@ -65,3 +65,14 @@ async function reconnect_printer() {
     }
     
 }
+
+
+$("#stop").click(function(evt){
+    evt.preventDefault();
+    var result = confirm("Are you sure?");
+    if(result){
+        sendCommand("M0");
+    }else{
+        alert("Command cancelled");
+    }
+});
