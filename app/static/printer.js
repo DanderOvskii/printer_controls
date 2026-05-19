@@ -76,3 +76,11 @@ $("#stop").click(function(evt){
         alert("Command cancelled");
     }
 });
+function stopPrinter() {
+  let text = "Press a button!\nEither OK or Cancel.";
+  if (confirm(text) == true) {
+    sendCommand("M0");
+  } else {
+    alert("Command cancelled");
+  }
+}
