@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <div style="position:absolute;">
-            {% if not current_user.is_authenticated %}
+            {% if current_user.is_authenticated %}
             <button class="Button-4" onclick="logout()">Log out</button>
             {% else %}
             <a href="/login">
