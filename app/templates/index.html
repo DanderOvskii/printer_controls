@@ -11,13 +11,16 @@
 <body>
     <div class="container">
         <div style="position:absolute;">
-
+            {% if current_user.is_authenticated %}
             <button class="Button-4" onclick="logout()">Log out</button>
-            <a href="/login"">
+            {% else %}
+            <a href="/login">
 
                 <button class="Button-4" style="padding-left: 5px;">Log in</button>
             </a>
+            {% endif %}
         </div>
+        {% if not current_user.is_authenticated %}
         <div class="controll_container">
             <h1>Hellooooo, Miguel!</h1>
 
@@ -45,6 +48,7 @@
             <h3>Response:</h3>
             <pre id="response"></pre>
         </div>
+        {% endif %}
         <div class="camera_container">
             <h2>Camera Feed:</h2>
             <button class="button-4" onclick="toggleCam()">swich cam</button>
