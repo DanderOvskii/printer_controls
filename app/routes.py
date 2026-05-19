@@ -5,7 +5,11 @@ from flask_login import login_required, current_user
 bp = Blueprint("main", __name__)
 @bp.route('/')
 @bp.route('/index')
-@login_required
 def index():
     user =   user = {'username': 'Miguel'}
     return render_template('index.html', title='Home', user=user)
+
+
+@bp.route('/login')
+def login():
+    return render_template('login.html', title='Login')

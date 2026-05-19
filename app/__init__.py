@@ -12,7 +12,6 @@ def create_app():
     # Setup flask-login
     login_manager = LoginManager()
     login_manager.init_app(app)
-    login_manager.login_view = 'auth.login'
 
     # Single user instance (must match the one in auth_api)
     from app.api.auth_api import user

@@ -11,7 +11,6 @@ bp = Blueprint(
 
 
 @bp.route("/video_feed", methods=["GET"])
-@login_required
 def video_feed():
     return Response(
         video_stream(),
@@ -21,7 +20,6 @@ def video_feed():
 
 
 @bp.route('/switch',methods = ["GET"])
-@login_required
 def switch():
     cam_index = int(request.args.get('cam'))
     camera.switch_camera(cam_index)
