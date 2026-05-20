@@ -40,14 +40,25 @@ function pollPrinterState() {
     fetch("/api/printer/status")
         .then(response => response.json())
         .then(data => {
-            const isPrinting = data.state === 'PRINTING';
-            document.querySelectorAll('.printer-action-btn').forEach(btn => {
-                btn.disabled = isPrinting;
-            });
+            document.getElementById("status").textContent = JSON.stringify(data.state, null, 2);
         });
 }
 
 setInterval(pollPrinterState, 2000);
+
+function pollprinterTemp(){
+    response = sendCommand("M105");
+    for (const line of response) {        
+        if (line.startsWith("ok T:")) {
+            const noztemp = line.split("T:")[1].split(" ")[0];
+            const bedtemp = line.split("B:")[1].split(" ")[0];
+            document.getElementById("bedtemperature").textContent = bedtemp + "°C";
+            document.getElementById("temperature").textContent = noztemp + "°C";
+            break;
+        }
+}
+}
+setInterval(pollprinterTemp, 5000);
 
 
 async function reconnect_printer() {
